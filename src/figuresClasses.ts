@@ -8,32 +8,26 @@ export interface Figure {
 }
 
 export class Triangle implements Figure {
-  color: Color;
+  shape: Shape = 'triangle';
 
-  shape: Shape;
-
-  a: number;
-
-  b: number;
-
-  c: number;
-
-  constructor(color: Color, a: number, b: number, c: number) {
+  constructor(
+    public color: Color,
+    public a: number,
+    public b: number,
+    public c: number,
+  ) {
     if (a <= 0 || b <= 0 || c <= 0) {
-      throw new Error('...');
+      throw new Error('All sides must be positive numbers.');
     }
 
     const longest = Math.max(a, b, c);
     const sumOfOthers = a + b + c - longest;
 
     if (longest >= sumOfOthers) {
-      throw new Error('...');
+      throw new Error(
+        'The longest side must be less than the sum of the other two.',
+      );
     }
-    this.color = color;
-    this.shape = 'triangle';
-    this.a = a;
-    this.b = b;
-    this.c = c;
   }
 
   getArea(): number {
@@ -51,20 +45,15 @@ export class Triangle implements Figure {
 }
 
 export class Circle implements Figure {
-  color: Color;
+  shape: Shape = 'circle';
 
-  shape: Shape;
-
-  radius: number;
-
-  constructor(color: Color, radius: number) {
+  constructor(
+    public color: Color,
+    public radius: number,
+  ) {
     if (radius <= 0) {
-      throw new Error('...');
+      throw new Error('The radius must be a positive number.');
     }
-
-    this.color = color;
-    this.shape = 'circle';
-    this.radius = radius;
   }
 
   getArea(): number {
@@ -73,22 +62,16 @@ export class Circle implements Figure {
 }
 
 export class Rectangle implements Figure {
-  color: Color;
+  shape: Shape = 'rectangle';
 
-  shape: Shape;
-
-  height: number;
-
-  width: number;
-
-  constructor(color: Color, height: number, width: number) {
+  constructor(
+    public color: Color,
+    public height: number,
+    public width: number,
+  ) {
     if (height <= 0 || width <= 0) {
-      throw new Error('...');
+      throw new Error('All sides must be positive numbers.');
     }
-    this.color = color;
-    this.shape = 'rectangle';
-    this.height = height;
-    this.width = width;
   }
 
   getArea(): number {
